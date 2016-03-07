@@ -153,20 +153,20 @@
 ## .data() .removeDate()  .hasDate()
  用来储存数据/清楚数据/判断是否含有数据的值
 <------------------> 
- $("body").data("foo", 52);
-$("body").data("bar", { myType: "test", count: 40 });
-$("body").data({ baz: [ 1, 2, 3 ] });
+    $("body").data("foo", 52);
+    $("body").data("bar", { myType: "test", count: 40 });
+    $("body").data({ baz: [ 1, 2, 3 ] });
  
-$("body").data("foo"); // 52
-$("body").data(); // { foo: 52, bar: { myType: "test", count: 40 }, baz: [ 1, 2, 3 ] }
+    $("body").data("foo"); // 52
+    $("body").data(); // { foo: 52, bar: { myType: "test", count: 40 }, baz: [ 1, 2, 3 ] }
 
 <------------------>
-<div data-role="page" data-last-value="43" data-hidden="true" data-options='{"name":"John"}'></div>
-等价于
-$("div").data("role") === "page";
-$("div").data("lastValue") === 43;
-$("div").data("hidden") === true;
-$("div").data("options").name === "John";
+    <div data-role="page" data-last-value="43" data-hidden="true" data-options='{"name":"John"}'></div>
+    等价于
+    $("div").data("role") === "page";
+    $("div").data("lastValue") === 43;
+    $("div").data("hidden") === true;
+    $("div").data("options").name === "John";
 
 <------------------>
     <div>value1 before creation: <span></span></div>
@@ -186,21 +186,22 @@ $("div").data("options").name === "John";
     </script> 
 <------------------>
 
-<p>Results: </p>
-var $p = jQuery("p"), p = $p[0];
-jQuery.hasData(p) //false
+    <p>Results: </p>
+    
+    var $p = jQuery("p"), p = $p[0];
+    jQuery.hasData(p) //false
 
-$.data(p, "testing", 123);
-jQuery.hasData(p) //true
+    $.data(p, "testing", 123);
+    jQuery.hasData(p) //true
 
-$.removeData(p, "testing");
-jQuery.hasData(p) //false
+    $.removeData(p, "testing");
+    jQuery.hasData(p) //false
 
-$p.on('click', function() {});
-jQuery.hasData(p); // true 
+    $p.on('click', function() {});
+    jQuery.hasData(p); // true 
 
-$p.off('click');
-jQuery.hasData(p) //false
+    $p.off('click');
+    jQuery.hasData(p) //false
 
 
     
