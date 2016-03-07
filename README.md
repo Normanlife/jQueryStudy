@@ -147,3 +147,60 @@
     </script>
     
     $("div").queue('fx',[]) //能将.queue()所记录的已经执行的函数清空，也就是原被不能再执行的函数可以重新执行，详情查看http://www.jquery123.com/dequeue/最下面的例子。
+## .clearqueue()
+ 其实等价于.queue('fx',[]) ，后者反而更加直观。
+ 
+## .data() .removeDate()  .hasDate()
+ 用来储存数据/清楚数据/判断是否含有数据的值
+<------------------> 
+ $("body").data("foo", 52);
+$("body").data("bar", { myType: "test", count: 40 });
+$("body").data({ baz: [ 1, 2, 3 ] });
+ 
+$("body").data("foo"); // 52
+$("body").data(); // { foo: 52, bar: { myType: "test", count: 40 }, baz: [ 1, 2, 3 ] }
+
+<------------------>
+<div data-role="page" data-last-value="43" data-hidden="true" data-options='{"name":"John"}'></div>
+等价于
+$("div").data("role") === "page";
+$("div").data("lastValue") === 43;
+$("div").data("hidden") === true;
+$("div").data("options").name === "John";
+
+<------------------>
+    <div>value1 before creation: <span></span></div>
+    <div>value1 after creation: <span></span></div>
+    <div>value1 after removal: <span></span></div>
+    <div>value2 after removal: <span></span></div>
+    
+    <script>                  //这里面的jQuery均可由$("div")代替,代替以后.data()中第一个参数去除
+    var div = $("div")[0];
+    $("span:eq(0)").text("" + $("div").data("test1")); //value1 before creation: undefined
+    jQuery.data(div, "test1", "VALUE-1");
+    jQuery.data(div, "test2", "VALUE-2");
+    $("span:eq(1)").text("" + jQuery.data(div, "test1")); //value1 after creation: VALUE-1
+    jQuery.removeData(div, "test1");
+    $("span:eq(2)").text("" + jQuery.data(div, "test1")); //value1 after removal: undefined
+    $("span:eq(3)").text("" + jQuery.data(div, "test2")); //value2 after removal: VALUE-2
+    </script> 
+<------------------>
+
+<p>Results: </p>
+var $p = jQuery("p"), p = $p[0];
+jQuery.hasData(p) //false
+
+$.data(p, "testing", 123);
+jQuery.hasData(p) //true
+
+$.removeData(p, "testing");
+jQuery.hasData(p) //false
+
+$p.on('click', function() {});
+jQuery.hasData(p); // true 
+
+$p.off('click');
+jQuery.hasData(p) //false
+
+
+    
