@@ -148,11 +148,13 @@
     
     $("div").queue('fx',[]) //能将.queue()所记录的已经执行的函数清空，也就是原被不能再执行的函数可以重新执行，详情查看http://www.jquery123.com/dequeue/最下面的例子。
 ## .clearqueue()
- 其实等价于.queue('fx',[]) ，后者反而更加直观。
+    其实等价于.queue('fx',[]) ，后者反而更加直观。
  
 ## .data() .removeDate()  .hasDate()
- 用来储存数据/清楚数据/判断是否含有数据的值
+    用来储存数据/清楚数据/判断是否含有数据的值
+    
 <------------------> 
+
     $("body").data("foo", 52);
     $("body").data("bar", { myType: "test", count: 40 });
     $("body").data({ baz: [ 1, 2, 3 ] });
@@ -161,6 +163,7 @@
     $("body").data(); // { foo: 52, bar: { myType: "test", count: 40 }, baz: [ 1, 2, 3 ] }
 
 <------------------>
+
     <div data-role="page" data-last-value="43" data-hidden="true" data-options='{"name":"John"}'></div>
     等价于
     $("div").data("role") === "page";
@@ -169,6 +172,7 @@
     $("div").data("options").name === "John";
 
 <------------------>
+
     <div>value1 before creation: <span></span></div>
     <div>value1 after creation: <span></span></div>
     <div>value1 after removal: <span></span></div>
