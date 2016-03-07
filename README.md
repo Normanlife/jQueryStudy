@@ -106,3 +106,44 @@
     //innerHeight不能检测 document 和 windows 的高，需要用 .height()
 
     </script>
+# 数据操作
+## .queue() .dequeue()
+    <style>
+    div {
+        margin: 3px;
+        width: 50px;
+        position: absolute;
+        height: 50px;
+        left: 10px;
+        top: 30px;
+        background-color: yellow;
+    }
+    
+    div.red {
+        background-color: red;
+    }
+    </style>
+
+    <button>Start</button>
+    <div></div>
+    <script>
+    $("button").click(function() {
+        $("div").animate({
+            left: '+=200px'
+        }, 2000);
+        $("div").animate({
+            top: '0px'
+        }, 600);
+        //$("div").toggleClass("red"); //如果执行这行，把下面的.queue()注释掉，则DIV一开始就加上red样式，如果启动.queue()函数，不执行这行，则DIV等上面的两个函数执行完以后才执行，DIV才变红
+        $("div").queue(function() {   //.queue()确保上面的函数执行完才执行下面的函数，但是执行完.queue()函数以后，他下面还没执行的函数将不能执行
+            $(this).toggleClass("red");
+            $(this).dequeue();   //.dequeue()能确保函数能继续执行下去，取消了.queue()未执行的函数不能执行的功能
+        });
+        $("div").animate({
+            left: '10px',
+            top: '30px'
+        }, 700);
+    });
+    </script>
+    
+    $("div").queue('fx',[]) //能将.queue()所记录的已经执行的函数清空，也就是原被不能再执行的函数可以重新执行，详情查看http://www.jquery123.com/dequeue/最下面的例子。
